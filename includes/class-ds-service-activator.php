@@ -35,7 +35,6 @@ class Ds_Service_Activator {
 		self::ds_service_create_table();
 		self::ds_user_create_table();
 
-	
 		self::ds_comment_create_table();
 		self::ds_react_create_table();
 		self::ds_like_create_table();
@@ -46,13 +45,126 @@ class Ds_Service_Activator {
 
 		self::ds_follow_create_table();
 		self::ds_notif_create_table();
+
+		self::ds_point_create_table();
+		self::ds_point_items_create_table();
+		self::ds_reward_type_create_table();
+	}
+
+
+	// public static function ds_service_settings_create_table()
+	// {
+	// 	global $table_prefix, $wpdb;
+
+	// 	$wp_ds_table = $table_prefix . "ds_service_settings";
+
+	// 	if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
+	// 		$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
+	// 		$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
+
+	// 		$sql .= "  `service_id`  int(10)   NOT NULL, ";
+	// 		$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+
+	// 		$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
+
+	// 		$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
+	// 		$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+	// 		$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+
+	// 		$sql .= "  `user_id` int(10) NOT NULL, ";
+	// 		$sql .= "  PRIMARY KEY (`id`) ";
+	// 		$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+	// 		dbDelta($sql);
+	// 	}
+	// }
+
+	public static function ds_point_items_create_table()
+	{
+		global $table_prefix, $wpdb;
+
+		$wp_ds_table = $table_prefix . "ds_point_items";
+
+		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
+			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
+			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
+
+			$sql .= "  `service_id`  int(10)   NOT NULL, ";
+			$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+
+			$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
+
+			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+
+			$sql .= "  `user_id` int(10) NOT NULL, ";
+			$sql .= "  PRIMARY KEY (`id`) ";
+			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+			dbDelta($sql);
+		}
+	}
+
+	public static function ds_point_create_table()
+	{
+		global $table_prefix, $wpdb;
+
+		$wp_ds_table = $table_prefix . "ds_points";
+
+		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
+			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
+			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
+
+			$sql .= "  `service_id`  int(10)   NOT NULL, ";
+			$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+
+			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
+
+			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+
+			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  PRIMARY KEY (`id`) ";
+			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+			dbDelta($sql);
+		}
+	}
+
+	public static function ds_reward_type_create_table()
+	{
+		global $table_prefix, $wpdb;
+
+		$wp_ds_table = $table_prefix . "ds_reward_types";
+
+		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
+			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
+			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
+
+			$sql .= "  `service_id`  int(10)   NOT NULL, ";
+			$sql .= "  `name`  varchar(255) COLLATE utf8mb4_unicode_ci   NOT NULL, ";
+
+			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
+
+			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+
+			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  PRIMARY KEY (`id`) ";
+			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+			dbDelta($sql);
+		}
 	}
 
 	public static function ds_notif_create_table()
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_notif";
+		$wp_ds_table = $table_prefix . "ds_notifs";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -65,8 +177,8 @@ class Ds_Service_Activator {
 			$sql .= "  `notif_type` ENUM('p', 'n', 'i') NOT NULL, "; // positive, negative & info
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
@@ -83,7 +195,7 @@ class Ds_Service_Activator {
 
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_follow";
+		$wp_ds_table = $table_prefix . "ds_follows";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -95,7 +207,7 @@ class Ds_Service_Activator {
 
 			$sql .= "  `status` ENUM('f', 'b'), "; // f - follow, b - block
 			$sql .= "  `since_` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -119,8 +231,8 @@ class Ds_Service_Activator {
 			$sql .= "  `tag_id`  int(10)   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -135,7 +247,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_tag";
+		$wp_ds_table = $table_prefix . "ds_tags";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -145,8 +257,8 @@ class Ds_Service_Activator {
 			$sql .= "  `to_services` text COLLATE utf8mb4_unicode_ci NOT NULL, "; //when add " serviceid," - space service id comma
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -161,7 +273,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_comment";
+		$wp_ds_table = $table_prefix . "ds_comments";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -176,8 +288,8 @@ class Ds_Service_Activator {
 			$sql .= "  `approved_by`  int(10)   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -191,7 +303,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_react";
+		$wp_ds_table = $table_prefix . "ds_reactions";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -203,8 +315,8 @@ class Ds_Service_Activator {
 			$sql .= "  `code`  varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -218,7 +330,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_like";
+		$wp_ds_table = $table_prefix . "ds_likes";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -229,8 +341,8 @@ class Ds_Service_Activator {
 			$sql .= "  `islike` ENUM('L', 'D') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -245,7 +357,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_share";
+		$wp_ds_table = $table_prefix . "ds_shares";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -256,8 +368,8 @@ class Ds_Service_Activator {
 			$sql .= "  `shared_on` ENUM('FB', 'TW', 'WP', 'TG') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -274,7 +386,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_user";
+		$wp_ds_table = $table_prefix . "ds_users";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -285,8 +397,8 @@ class Ds_Service_Activator {
 			$sql .= "  `available_rep`  DECIMAL(16,8) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
@@ -300,7 +412,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_service";
+		$wp_ds_table = $table_prefix . "ds_services";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -310,8 +422,8 @@ class Ds_Service_Activator {
 			$sql .= "  `name`  varchar(255) COLLATE utf8mb4_unicode_ci   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
