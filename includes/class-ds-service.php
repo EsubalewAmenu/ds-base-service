@@ -157,7 +157,7 @@ class Ds_Service {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'ds_admin_menu_section' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'ds_service_admin_menu_section' );
 
 	}
 
