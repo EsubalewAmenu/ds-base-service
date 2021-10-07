@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+if(!defined("DSSERVICE"))
+define("DSSERVICE","DSSERVICE");
 if(!defined("DSSERVICE_PLAGIN_DIR"))
 define("DSSERVICE_PLAGIN_DIR",plugin_dir_path( __FILE__ ));
 if(!defined("DSSERVICE_PLAGIN_URL"))
