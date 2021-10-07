@@ -40,7 +40,7 @@ $services = $wpdb->get_results("SELECT * FROM $wp_services_table where (`deleted
                         <?php
                         include_once DSSERVICE_PLAGIN_DIR . '/admin/partials/pages/add/service.php';
                         ?>
-                        <script>
+                        <!-- <script>
                             $(document).ready(function() {
 
 
@@ -54,52 +54,16 @@ $services = $wpdb->get_results("SELECT * FROM $wp_services_table where (`deleted
                                 });
 
                             });
-                        </script>
+                        </script> -->
 
-                        <div class="row">
 
-                            <div class="table-responsive">
-                                <table class="table table-striped" id="table-1">
-                                    <thead>
-                                        <tr class="orang-back">
-                                            <th class="text-center">
-                                                #
-                                            </th>
-                                            <th>Title</th>
-                                            <th>name</th>
-                                            <th>ID</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-
-                                        for ($x = 0; $x < count($services); $x++) {
-                                            echo '<tr>
-                                                  <td> ' . ($x + 1) . ' </td>
-                                                  
-                                                  <td>' . $services[$x]->title . '</td>
-                                                  
-                                                  <td>' . $services[$x]->name . '</td>
-                                                  
-                                                  <td>' . $services[$x]->id . '</td>
-                      
-                                                  <td>
-                                                  <form action="" method="POST">
-                                      <button value="' . $services[$x]->id . '" type="submit" name="service_detail" class="btn btn-primary">Detail</button>
-                              </form>
-                                                </tr>';
-                                        }
-                                        ?>
+<?php
+                        include_once DSSERVICE_PLAGIN_DIR . '/admin/partials/pages/list/service.php';
+                        ?>
 
 
 
-                                    </tbody>
-                                </table>
-                            </div>
 
-                        </div>
                     </div>
                 </div>
             </div>

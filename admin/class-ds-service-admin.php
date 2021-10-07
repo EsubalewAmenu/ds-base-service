@@ -127,6 +127,7 @@ class Ds_Service_Admin {
 	}
 	public function ds_menupage_on_click()
 	{
+
 		include_once DSSERVICE_PLAGIN_DIR . '/admin/partials/pages/services.php';
 		// echo "What do you went? </br> Plese choose from sub-menu!!";
 	}
