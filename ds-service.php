@@ -32,6 +32,9 @@ if ( ! defined( 'WPINC' ) ) {
 
 if(!defined("DSSERVICE"))
 define("DSSERVICE","DSSERVICE");
+// add_filter( 'rest_url_prefix', function() {
+//     return 'api';
+// });
 if(!defined("DSSERVICE_PLAGIN_DIR"))
 define("DSSERVICE_PLAGIN_DIR",plugin_dir_path( __FILE__ ));
 if(!defined("DSSERVICE_PLAGIN_URL"))
