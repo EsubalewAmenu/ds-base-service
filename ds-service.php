@@ -33,6 +33,10 @@ if ( ! defined( 'WPINC' ) ) {
 // add_filter( 'rest_url_prefix', function() {
 //     return 'api';
 // });
+if(!defined("DSSERVICE_PLAGIN_DIR"))
+define("DSSERVICE_PLAGIN_DIR",plugin_dir_path( __FILE__ ));
+if(!defined("DSSERVICE_PLAGIN_URL"))
+define("DSSERVICE_PLAGIN_URL",plugins_url()."/ds-base-service");
 
 /**
  * Currently plugin version.

@@ -103,7 +103,7 @@ class Ds_Service_Admin {
 
 
 
-	function ds_admin_menu_section()
+	function ds_service_admin_menu_section()
 	{
 		$page_title = "DS Services";
 		$menu_title = "DS Services";
@@ -127,6 +127,7 @@ class Ds_Service_Admin {
 	}
 	public function ds_menupage_on_click()
 	{
-		echo "What do you went? </br> Plese choose from sub-menu!!";
+		include_once DSSERVICE_PLAGIN_DIR . '/admin/partials/pages/services.php';
+		// echo "What do you went? </br> Plese choose from sub-menu!!";
 	}
 }
