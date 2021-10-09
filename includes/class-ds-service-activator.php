@@ -68,8 +68,8 @@ class Ds_Service_Activator {
 	// 		$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
 
 	// 		$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-	// 		$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-	// 		$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			// $sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			// $sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 	// $sql .= "  `enabled` int(10) DEFAULT 1, ";
 	// 		$sql .= "  `user_id` int(10) NOT NULL, ";
@@ -96,8 +96,8 @@ class Ds_Service_Activator {
 			$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `status` int(10) default 0, ";
 			$sql .= "  `user_id` int(10) NOT NULL, ";
@@ -124,8 +124,8 @@ class Ds_Service_Activator {
 			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -152,8 +152,8 @@ class Ds_Service_Activator {
 			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -181,8 +181,8 @@ class Ds_Service_Activator {
 			$sql .= "  `notif_type` ENUM('p', 'n', 'i') NOT NULL, "; // positive, negative & info
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `status` int(10) default 0, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -237,8 +237,8 @@ class Ds_Service_Activator {
 			$sql .= "  `tag_id`  int(10)   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -264,8 +264,8 @@ class Ds_Service_Activator {
 			$sql .= "  `to_services` text COLLATE utf8mb4_unicode_ci NOT NULL, "; //when add " serviceid," - space service id comma
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -296,8 +296,8 @@ class Ds_Service_Activator {
 			$sql .= "  `approved_by`  int(10)   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -324,8 +324,8 @@ class Ds_Service_Activator {
 			$sql .= "  `code`  varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
@@ -351,8 +351,8 @@ class Ds_Service_Activator {
 			$sql .= "  `islike` ENUM('L', 'D') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -378,8 +378,8 @@ class Ds_Service_Activator {
 			$sql .= "  `shared_on` ENUM('FB', 'TW', 'WP', 'TG') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
 
@@ -406,8 +406,8 @@ class Ds_Service_Activator {
 			$sql .= "  `phone`  varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `status` int(10) default 0, ";
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
@@ -434,8 +434,8 @@ class Ds_Service_Activator {
 			$sql .= "  `name`  varchar(255) COLLATE utf8mb4_unicode_ci   NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `updated_at` TIMESTAMP DEFAULT NULL, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
 			$sql .= "  `user_id`  int(10)   NOT NULL, ";
