@@ -124,6 +124,8 @@ class Ds_Service {
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/users.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/basic.php';
+
 		$this->loader = new Ds_Service_Loader();
 
 	}
@@ -162,10 +164,11 @@ class Ds_Service {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'ds_service_admin_menu_section' );
 
 		$ds_users_API = new DS_users_API();
-
 		$this->loader->add_action( 'rest_api_init', $ds_users_API, 'rest_ds_get_user', 1, 1 );
-		
 
+		$ds_basic_API = new DS_basic_API();
+		$this->loader->add_action( 'rest_api_init', $ds_basic_API, 'rest_ds_basics', 1, 1 );
+		
 		add_action( 'wp_ajax_foobar', 'my_ajax_foobar_handler' );
  
 function my_ajax_foobar_handler() {
