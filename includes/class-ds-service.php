@@ -123,8 +123,10 @@ class Ds_Service {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-ds-service-public.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/users.php';
-
+		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/basic.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/controller/basic.php';
 
 		$this->loader = new Ds_Service_Loader();
 
@@ -169,21 +171,26 @@ class Ds_Service {
 		$ds_basic_API = new DS_basic_API();
 		$this->loader->add_action( 'rest_api_init', $ds_basic_API, 'rest_ds_basics', 1, 1 );
 		
-		add_action( 'wp_ajax_foobar', 'my_ajax_foobar_handler' );
+		
+		$ds_public_basic = new DS_public_basic();
+		$this->loader->add_shortcode( 'ds_basic_service_code', $ds_public_basic, 'ds_basic_service_OnClick' );
+
+
+// 		add_action( 'wp_ajax_foobar', 'my_ajax_foobar_handler' );
  
-function my_ajax_foobar_handler() {
-    // Make your response and echo it.
-	$array_result = array(
-        'data' => 'your data',
-        'message' => 'your message'
-    );
+// function my_ajax_foobar_handler() {
+//     // Make your response and echo it.
+// 	$array_result = array(
+//         'data' => 'your data',
+//         'message' => 'your message'
+//     );
  
-    // Make your array as json
-    wp_send_json($array_result);
+//     // Make your array as json
+//     wp_send_json($array_result);
 	
-    // Don't forget to stop execution afterward.
-    wp_die();
-}
+//     // Don't forget to stop execution afterward.
+//     wp_die();
+// }
 
 	}
 
