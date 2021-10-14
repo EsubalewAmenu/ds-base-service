@@ -56,7 +56,7 @@ class Ds_Service_Activator {
 	// {
 	// 	global $table_prefix, $wpdb;
 
-	// 	$wp_ds_table = $table_prefix . "ds_service_settings";
+	// 	$wp_ds_table = $table_prefix . "ds_b_service_settings";
 
 	// 	if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 	// 		$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -84,7 +84,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_point_items";
+		$wp_ds_table = $table_prefix . "ds_b_point_items";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -112,7 +112,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_points";
+		$wp_ds_table = $table_prefix . "ds_b_points";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -140,7 +140,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_reward_types";
+		$wp_ds_table = $table_prefix . "ds_b_reward_types";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -168,7 +168,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_notifs";
+		$wp_ds_table = $table_prefix . "ds_b_notifs";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -200,7 +200,7 @@ class Ds_Service_Activator {
 
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_follows";
+		$wp_ds_table = $table_prefix . "ds_b_follows";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -212,8 +212,8 @@ class Ds_Service_Activator {
 
 			$sql .= "  `status` ENUM('f', 'b'), "; // f - follow, b - block
 			$sql .= "  `since_` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
-			$sql .= "  `deleted_at` TIMESTAMP DEFAULT NULL, ";
-
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
+ 
 			$sql .= "  `status` int(10) default 0, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -226,7 +226,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_post_tags";
+		$wp_ds_table = $table_prefix . "ds_b_post_tags";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -254,7 +254,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_tags";
+		$wp_ds_table = $table_prefix . "ds_b_tags";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -281,7 +281,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_comments";
+		$wp_ds_table = $table_prefix . "ds_b_comments";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -312,7 +312,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_reactions";
+		$wp_ds_table = $table_prefix . "ds_b_reactions";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -340,7 +340,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_likes";
+		$wp_ds_table = $table_prefix . "ds_b_likes";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -367,7 +367,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_shares";
+		$wp_ds_table = $table_prefix . "ds_b_shares";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -396,7 +396,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_users";
+		$wp_ds_table = $table_prefix . "ds_b_users";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
@@ -424,7 +424,7 @@ class Ds_Service_Activator {
 	{
 		global $table_prefix, $wpdb;
 
-		$wp_ds_table = $table_prefix . "ds_services";
+		$wp_ds_table = $table_prefix . "ds_b_services";
 
 		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
