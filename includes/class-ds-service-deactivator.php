@@ -32,19 +32,20 @@ class Ds_Service_Deactivator {
 	public static function deactivate() {
 		
 		global $table_prefix, $wpdb;
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_services");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_users");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_shares");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_likes");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_reactions");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_comments");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_tags");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_post_tags");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_follows");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_notifs");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_reward_types");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_points");
-		$wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_point_items");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_services");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_users");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_shares");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_likes");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_reactions");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_comments");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_tags");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_post_tags");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_follows");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_notifs");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_reward_types");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_points");
+		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "ds_point_items");
+		
 		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "");
 		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "");
 		// $wpdb->query("DROP TABLE IF EXISTS " .  $table_prefix . "");
