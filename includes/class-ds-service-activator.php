@@ -32,23 +32,19 @@ class Ds_Service_Activator {
 	public static function activate() {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-		self::ds_service_create_table();
-		self::ds_user_create_table();
-
 		self::ds_comment_create_table();
-		self::ds_react_create_table();
-		self::ds_like_create_table();
-		self::ds_share_create_table();
-
-		self::ds_tag_create_table();
-		self::ds_post_tags_create_table();
-
 		self::ds_follow_create_table();
+		self::ds_like_create_table();
 		self::ds_notif_create_table();
-
 		self::ds_point_create_table();
 		self::ds_point_items_create_table();
+		self::ds_post_tags_create_table();
+		self::ds_react_create_table();
 		self::ds_reward_type_create_table();
+		self::ds_service_create_table();
+		self::ds_share_create_table();
+		self::ds_tag_create_table();
+		self::ds_user_create_table(); 
 	}
 
 
@@ -62,8 +58,8 @@ class Ds_Service_Activator {
 	// 		$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 	// 		$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-	// 		$sql .= "  `service_id`  int(10)   NOT NULL, ";
-	// 		$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+	// 		$sql .= "  `service_id`  int(10) NOT NULL, ";
+	// 		$sql .= "  `reward_type_id`  int(10) NOT NULL, ";
 
 	// 		$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
 
@@ -90,8 +86,8 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `reward_type_id`  int(10) NOT NULL, ";
 
 			$sql .= "  `amount` DECIMAL(16,8) NOT NULL, ";
 
@@ -118,8 +114,8 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `reward_type_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `reward_type_id`  int(10) NOT NULL, ";
 
 			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
 
@@ -128,7 +124,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
@@ -146,7 +142,7 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
 			$sql .= "  `name`  varchar(255) COLLATE utf8mb4_unicode_ci   NOT NULL, ";
 
 			$sql .= "  `balance` DECIMAL(16,8) NOT NULL, ";
@@ -156,7 +152,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
@@ -175,7 +171,7 @@ class Ds_Service_Activator {
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
 			$sql .= "  `notif` text NOT NULL, ";
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
 			$sql .= "  `notif_of`  varchar(50) COLLATE utf8mb4_unicode_ci   NOT NULL, "; // approved, like .....
 			$sql .= "  `additional`  varchar(25) COLLATE utf8mb4_unicode_ci   NOT NULL, "; // item service id,
 			$sql .= "  `notif_type` ENUM('p', 'n', 'i') NOT NULL, "; // positive, negative & info
@@ -185,7 +181,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `status` int(10) default 0, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
@@ -206,15 +202,14 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `follower_id`  int(10)   NOT NULL, ";
-			$sql .= "  `following_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `follower_id`  int(10) NOT NULL, ";
+			$sql .= "  `following_id`  int(10) NOT NULL, ";
 
-			$sql .= "  `status` ENUM('f', 'b'), "; // f - follow, b - block
 			$sql .= "  `since_` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
  
-			$sql .= "  `status` int(10) default 0, ";
+			$sql .= "  `status` int(10) NOT NULL, "; // 1 folow, 2 block
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
@@ -232,16 +227,16 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `service_item_id`  int(10)   NOT NULL, ";
-			$sql .= "  `tag_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `service_item_id`  int(10) NOT NULL, ";
+			$sql .= "  `tag_id`  int(10) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
 			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -268,7 +263,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -287,20 +282,20 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, "; // for replay, make this 0 and service item to parent comment id
-			$sql .= "  `service_item_id`  int(10)   NOT NULL, ";
-			$sql .= "  `author_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, "; // for replay, make this 0 and service item to parent comment id
+			$sql .= "  `service_item_id`  int(10) NOT NULL, ";
+			$sql .= "  `author_id`  int(10) NOT NULL, ";
 
 			$sql .= "  `content` text COLLATE utf8mb4_unicode_ci NOT NULL, ";
-			$sql .= "  `status`  int(10)   NOT NULL, ";
-			$sql .= "  `approved_by`  int(10)   NOT NULL, ";
+			$sql .= "  `status`  int(10) NOT NULL, ";
+			$sql .= "  `approved_by`  int(10) NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
 			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -318,8 +313,8 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `service_item_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `service_item_id`  int(10) NOT NULL, ";
 			$sql .= "  `sentiment` ENUM('P', 'N') NOT NULL, ";
 			$sql .= "  `code`  varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL, ";
 
@@ -328,7 +323,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -346,15 +341,15 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `service_item_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `service_item_id`  int(10) NOT NULL, ";
 			$sql .= "  `islike` ENUM('L', 'D') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
 			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -373,15 +368,15 @@ class Ds_Service_Activator {
 			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
 			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
 
-			$sql .= "  `service_id`  int(10)   NOT NULL, ";
-			$sql .= "  `service_item_id`  int(10)   NOT NULL, ";
+			$sql .= "  `service_id`  int(10) NOT NULL, ";
+			$sql .= "  `service_item_id`  int(10) NOT NULL, ";
 			$sql .= "  `shared_on` ENUM('FB', 'TW', 'WP', 'TG') NOT NULL, ";
 
 			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
 			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -411,7 +406,7 @@ class Ds_Service_Activator {
 
 			$sql .= "  `status` int(10) default 0, ";
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, "; // main wp user id
+			$sql .= "  `user_id`  int(10) NOT NULL, "; // main wp user id
 
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
@@ -438,7 +433,7 @@ class Ds_Service_Activator {
 			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
 
 			$sql .= "  `enabled` int(10) DEFAULT 1, ";
-			$sql .= "  `user_id`  int(10)   NOT NULL, ";
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
 			$sql .= "  PRIMARY KEY (`id`) ";
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
