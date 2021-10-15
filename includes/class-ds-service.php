@@ -165,12 +165,12 @@ class Ds_Service {
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'ds_service_admin_menu_section' );
 
-		$ds_users_API = new DS_users_API();
-		$this->loader->add_action( 'rest_api_init', $ds_users_API, 'rest_ds_get_user', 1, 1 );
-
 		$ds_basic_API = new DS_basic_API();
 		$this->loader->add_action( 'rest_api_init', $ds_basic_API, 'rest_ds_basics', 1, 1 );
 		
+		$ds_users_API = new DS_users_API();
+		$this->loader->add_action( 'rest_api_init', $ds_users_API, 'rest_ds_get_user', 1, 1 );
+
 		
 		$ds_public_basic = new DS_public_basic();
 		$this->loader->add_shortcode( 'ds_basic_service_code', $ds_public_basic, 'ds_basic_service_OnClick' );
