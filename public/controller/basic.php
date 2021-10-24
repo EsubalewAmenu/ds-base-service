@@ -38,9 +38,10 @@ class DS_public_basic
 				// echo "sklddddd";
 				echo do_shortcode("[ds_act_tb_code]");
 			} else {
-				echo "hellow else";
+				// echo "hellow else";
 			}
-		} //activation end
+		}
+		//activation end
 
 	}
 }
