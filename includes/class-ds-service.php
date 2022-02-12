@@ -125,6 +125,8 @@ class Ds_Service {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/users.php';
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/api/basic.php';
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/common.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/controller/basic.php';
 
@@ -176,6 +178,8 @@ class Ds_Service {
 		$this->loader->add_shortcode( 'ds_basic_service_code', $ds_public_basic, 'ds_basic_service_OnClick' );
 
 
+		$DS_admin_common = new DS_admin_common();
+		$this->loader->add_action('init', $DS_admin_common, 'ds_bs_post_type_registration_init', 1, 1);
 // 		add_action( 'wp_ajax_foobar', 'my_ajax_foobar_handler' );
  
 // function my_ajax_foobar_handler() {
