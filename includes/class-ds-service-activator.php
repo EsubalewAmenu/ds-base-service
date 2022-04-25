@@ -42,8 +42,33 @@ class Ds_Service_Activator {
 		self::ds_share_create_table();
 		self::ds_tag_create_table();
 		self::ds_user_create_table(); 
+		self::ds_regions_table(); 
 	}
 
+	public static function ds_regions_table()
+	{
+		global $table_prefix, $wpdb;
+
+		$wp_ds_table = $table_prefix . "ds_b_regions";
+
+		if ($wpdb->get_var("show tables like '$wp_ds_table'") != $wp_ds_table) {
+			$sql = "CREATE TABLE `" . $wp_ds_table . "` ( ";
+			$sql .= "  `id` int(10) unsigned NOT NULL AUTO_INCREMENT, ";
+
+			$sql .= "  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL, ";
+
+			$sql .= "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ";
+			$sql .= "  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, ";
+			$sql .= "  `deleted_at` TIMESTAMP NULL DEFAULT NULL, ";
+
+			$sql .= "  `user_id`  int(10) NOT NULL, ";
+
+			$sql .= "  PRIMARY KEY (`id`) ";
+			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+
+			dbDelta($sql);
+		}
+	}
 
 	// public static function ds_service_settings_create_table()
 	// {
