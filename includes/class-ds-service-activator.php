@@ -67,6 +67,15 @@ class Ds_Service_Activator {
 			$sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
 
 			dbDelta($sql);
+
+			$sql = "INSERT INTO " . $wp_ds_table . " (`name`, `user_id`) VALUES ";
+			$sql .= "('Addis Ababa', '1'),";
+			$sql .= "('Adama', '1'),";
+			$sql .= "('Bahir dar', '1'),";
+			$sql .= "('Mekele', '1'),";
+			$sql .= "('Arba Minch', '1')";
+
+			dbDelta($sql);
 		}
 	}
 
