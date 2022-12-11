@@ -128,7 +128,11 @@ class Ds_Service {
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/common.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/apps_taxonomy.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/controller/post_type_ads.php';
+
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/controller/basic.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/controller/api/personal_ad.php';
 
 		$this->loader = new Ds_Service_Loader();
 
@@ -177,6 +181,13 @@ class Ds_Service {
 		$ds_public_basic = new DS_public_basic();
 		$this->loader->add_shortcode( 'ds_basic_service_code', $ds_public_basic, 'ds_basic_service_OnClick' );
 
+		
+		$Ds_service_post_type_ads_Admin = new Ds_service_post_type_ads_Admin();
+		$this->loader->add_action('init', $Ds_service_post_type_ads_Admin, 'ads_registration_init', 1, 1);
+		
+		$Ds_service_apps_taxonomy_Admin = new Ds_service_apps_taxonomy_Admin();
+		$this->loader->add_action('init', $Ds_service_apps_taxonomy_Admin, 'wpdocs_create_ds_service_apps_taxonomies', 1, 1);
+
 
 		$DS_admin_common = new DS_admin_common();
 		$this->loader->add_action('init', $DS_admin_common, 'ds_bs_post_type_registration_init', 1, 1);
@@ -212,6 +223,10 @@ class Ds_Service {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+
+		
+		$DS_service_public_personal_ad = new DS_service_public_personal_ad();
+		$this->loader->add_action( 'rest_api_init', $DS_service_public_personal_ad, 'rest_get_ad', 1, 1 );
 	}
 
 	/**

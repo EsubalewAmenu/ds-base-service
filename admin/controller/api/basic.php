@@ -40,6 +40,9 @@ class DS_basic_API
 						"last_update" => date("Y-m-d")
 					);
 				},
+				'permission_callback' => function () {
+                    return true;//self::is_user_verified();
+                }
 			));
 		});
 	}

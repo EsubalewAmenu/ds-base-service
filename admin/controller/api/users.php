@@ -53,6 +53,9 @@ class DS_users_API
 						"que_service" => $subjects
 					);
 				},
+				'permission_callback' => function () {
+                    return true;//self::is_user_verified();
+                }
 			));
 		});
 	}
@@ -81,6 +84,9 @@ class DS_users_API
 						"ques" => $ques
 					);
 				},
+				'permission_callback' => function () {
+                    return true;//self::is_user_verified();
+                }
 			));
 		});
 
@@ -106,6 +112,9 @@ class DS_users_API
 						"ques" => $ques
 					);
 				},
+				'permission_callback' => function () {
+                    return true;//self::is_user_verified();
+                }
 			));
 		});
 	}
