@@ -40,7 +40,7 @@ class Ds_service_post_type_ads_Admin
         $labels = array(
             'name'                  => _x('Ads', 'Post type general name', 'Ads'),
             'singular_name'         => _x('ad', 'Post type singular name', 'ad'),
-            'menu_name'             => _x('Ads', 'Admin Menu text', 'Ads'),
+            'menu_name'             => _x('Basic Services', 'Admin Menu text', 'Ads'),
             'name_admin_bar'        => _x('Ads', 'Add New on Toolbar', 'Ads'),
             'add_new'               => __('Add New', 'Ads'),
             'add_new_item'          => __('Add New ad', 'Ads'),

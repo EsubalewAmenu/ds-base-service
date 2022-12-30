@@ -110,6 +110,8 @@ class Ds_Service {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ds-service-i18n.php';
+		
+		// require_once plugin_dir_path(dirname(__FILE__)) . 'meta_files/Taxonomy-meta-class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -189,8 +191,6 @@ class Ds_Service {
 		$this->loader->add_action('init', $Ds_service_apps_taxonomy_Admin, 'wpdocs_create_ds_service_apps_taxonomies', 1, 1);
 
 
-		$DS_admin_common = new DS_admin_common();
-		$this->loader->add_action('init', $DS_admin_common, 'ds_bs_post_type_registration_init', 1, 1);
 // 		add_action( 'wp_ajax_foobar', 'my_ajax_foobar_handler' );
  
 // function my_ajax_foobar_handler() {
