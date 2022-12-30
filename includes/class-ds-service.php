@@ -111,7 +111,7 @@ class Ds_Service {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-ds-service-i18n.php';
 		
-		// require_once plugin_dir_path(dirname(__FILE__)) . 'meta_files/Taxonomy-meta-class.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'meta_files/Taxonomy-meta-class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
