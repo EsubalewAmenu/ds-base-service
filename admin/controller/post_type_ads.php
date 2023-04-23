@@ -78,7 +78,7 @@ class Ds_service_post_type_ads_Admin
             'menu_position'      => 20,
             'menu_icon'   => 'dashicons-book',
             // 'supports'           => array('title', 'editor', 'author'),
-            // 'taxonomies'         => array('post_tag'),
+            'taxonomies'         => array('post_tag'),
             'show_in_rest'       => true
         );
 
