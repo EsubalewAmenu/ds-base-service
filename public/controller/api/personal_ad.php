@@ -76,6 +76,7 @@ class DS_service_public_personal_ad
 					$response = array();
 					$response['code'] = 200;
 					$response['ad'] = $allAd;
+					$response['last_update'] = date("Y-m-d");
 					return new WP_REST_Response($response, 123);
 				},
 				'permission_callback' => function () {
