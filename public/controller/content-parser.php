@@ -161,4 +161,84 @@ class DS_content_parser_public
         }
         return null;
     }
+
+
+    function contentToJson($html)
+    {
+        // Use regex to extract the relevant information from the HTML blocks
+        preg_match_all('/<!-- (.*?) -->\n*(.*?)\n*<!-- \/.*? -->/s', $html, $matches);
+
+        // Store the information in a nested array based on h1 tags
+        $data = array();
+        $section = null;
+        foreach ($matches[1] as $i => $match) {
+            $tag = "";
+            $content = "";
+            preg_match('/<([a-z][a-z0-9]*)(?:\s[^>]*)?>.*?<\/\1>/is', $matches[2][$i], $tag_matches);
+            if (isset($tag_matches[1])) {
+                $tag = $tag_matches[1];
+                if ($tag === 'figure') {
+                    $result = self::extractFigureContent($matches[2][$i]);
+                    $tag = array_keys($result)[0];
+                    $content = $result[$tag];
+                } else {
+                    $content = trim(strip_tags($matches[2][$i]));
+                }
+            } else {
+                $content = trim($matches[2][$i]);
+            }
+            if ($tag === 'h1' || $tag === 'h2') {
+                if ($section) {
+                    $data[] = $section;
+                }
+                $section = array();
+            }
+            $section[] = array(
+                "type" => $tag,
+                "content" => $content
+            );
+        }
+        if ($section) {
+            $data[] = $section;
+        }
+        return $data;
+    }
+
+    function extractFigureContent($figureHtml)
+    {
+        preg_match('/<figure.*?>(.*?)<\/figure>/is', $figureHtml, $figureMatches);
+        $figureContent = $figureMatches[1];
+
+        $content = array();
+
+        // Extract image
+        preg_match('/<img.*?src="(.*?)".*?>/is', $figureContent, $imgMatches);
+        if (isset($imgMatches[1])) {
+            $content['img'] = $imgMatches[1];
+        }
+
+        // Extract table
+        preg_match('/<table.*?>(.*?)<\/table>/is', $figureContent, $tableMatches);
+        if (isset($tableMatches[1])) {
+            // $content['table'] = self::extractTableData($tableMatches[1]);
+            $content['table'] = self::extractTableData($tableMatches[1]);
+        }
+
+        return $content;
+    }
+
+    function extractTableData($tableHtml)
+    {
+        preg_match_all('/<tr>(.*?)<\/tr>/s', $tableHtml, $rowMatches);
+        $tableData = array();
+        foreach ($rowMatches[1] as $rowHtml) {
+            preg_match_all('/<t[dh]>(.*?)<\/t[dh]>/s', $rowHtml, $cellMatches);
+            $row = array();
+            foreach ($cellMatches[1] as $cellHtml) {
+                $row[] = trim(strip_tags($cellHtml));
+            }
+            $tableData[] = $row;
+        }
+        return $tableData;
+    }
 }
