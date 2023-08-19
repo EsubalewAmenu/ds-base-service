@@ -192,6 +192,24 @@ class DS_content_parser_public
                     $data[] = $section;
                 }
                 $section = array();
+            } else if ($tag === 'p' && str_starts_with($content, '{{--question-')) {
+
+                $taxonomy_slug = substr($content, 13, -4);
+
+                $term = get_term_by('slug', $taxonomy_slug, 'ds_quiz_questions');
+
+                $content = $term;
+
+                if ($term) {
+                    $term_metas = get_term_meta($term->term_id);
+
+                    for ($i = 0; $i < count($term_metas); $i++) {
+                        $keys = array_keys($term_metas);
+                        $content = [$keys[$i] => $term_metas[$keys[$i]]];
+                    }
+                } else {
+                    $content = "Error on question. Content the developers.";
+                }
             }
             $section[] = array(
                 "type" => $tag,
