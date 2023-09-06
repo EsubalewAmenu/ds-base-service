@@ -197,16 +197,37 @@ class DS_content_parser_public
                 $taxonomy_slug = substr($content, 13, -4);
 
                 $term = get_term_by('slug', $taxonomy_slug, 'ds_quiz_questions');
-
-                $content = $term;
+                $tag = "form";
 
                 if ($term) {
-                    $term_metas = get_term_meta($term->term_id);
 
-                    for ($i = 0; $i < count($term_metas); $i++) {
-                        $keys = array_keys($term_metas);
-                        $content = [$keys[$i] => $term_metas[$keys[$i]]];
+                    $term_metas = get_term_meta($term->term_id);
+                    // print_r($term_metas);
+                    // exit();
+                    $form_content = [];
+                    foreach ($term_metas as $key => $serialized_value) {
+                        $term_content[$key] = $serialized_value;
+                        $unserialized_value = maybe_unserialize($serialized_value[0]);
+
+                        if (is_array($unserialized_value)) {
+
+                            $values_array = [];
+                            foreach ($unserialized_value as $innerKey => $innerValue) {
+                                // Now you can work with $innerValue
+                                if (is_array($innerValue)) {
+                                    foreach ($innerValue as $fieldKey => $fieldValue) {
+                                        // Do something with $fieldKey and $fieldValue
+
+                                        $values_array[] = array($fieldKey => $fieldValue);
+                                    }
+                                }
+                                $form_content[] = array($key => $values_array);
+                            }
+                        } else {
+                            $form_content[] = array($key => $unserialized_value);
+                        }
                     }
+                    $content = array($taxonomy_slug => $form_content);
                 } else {
                     $content = "Error on question. Content the developers.";
                 }
