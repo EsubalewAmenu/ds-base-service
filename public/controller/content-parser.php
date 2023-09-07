@@ -218,14 +218,14 @@ class DS_content_parser_public
                                     foreach ($innerValue as $fieldKey => $fieldValue) {
                                         // Do something with $fieldKey and $fieldValue
 
-                                        $field = array("id" => $fieldKey, "name" => $fieldValue, "value" => "");
+                                        $field = array("id" => $fieldKey, "type" => "text", "required" => true, "name" => $fieldValue, "value" => "");
                                         $values_array[] = $field;
                                     }
                                 }
                                 $form_content[] = array($key => $values_array);
                             }
                         } else {
-                            $form_content[] = array("id" => $key, "name" => $unserialized_value, "value" => "");
+                            $form_content[] = array("id" => $key, "type" => "text", "required" => true, "name" => $unserialized_value, "value" => "");
                         }
                     }
                     $form_content[] = array("form_status" => "pending");
