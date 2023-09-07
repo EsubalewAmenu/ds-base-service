@@ -201,9 +201,28 @@ class DS_content_parser_public
 
                 if ($term) {
 
-                    $term_metas = get_term_meta($term->term_id);
-                    // print_r($term_metas);
+                    $args = array(
+                        'post_type' => 'ds_quiz_user_answer',            // Custom post type
+                        'author' => get_current_user_id(),                    // Current user as author
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'ds_quiz_questions',       // Custom taxonomy
+                                'field'    => 'slug',
+                                'terms'    => $taxonomy_slug
+                            ),
+                        ),
+                        'posts_per_page' => 1                           // Get all posts that match the criteria
+                    );
+
+                    $post = get_posts($args);
+                    if ($post) $post = $post[0];
+
+                    // print_r($post);
                     // exit();
+
+                    $term_metas = get_term_meta($term->term_id);
+
+
                     $form_content = [];
                     foreach ($term_metas as $key => $serialized_value) {
                         $term_content[$key] = $serialized_value;
@@ -218,7 +237,10 @@ class DS_content_parser_public
                                     foreach ($innerValue as $fieldKey => $fieldValue) {
                                         // Do something with $fieldKey and $fieldValue
 
-                                        $field = array("id" => $fieldKey, "type" => "text", "required" => true, "name" => $fieldValue, "value" => "");
+                                        $field = array(
+                                            "id" => $fieldKey, "type" => "text", "required" => true,
+                                            "name" => $fieldValue, "value" => ""
+                                        );
                                         $values_array[] = $field;
                                     }
                                 }
