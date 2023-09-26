@@ -250,8 +250,9 @@ class DS_content_parser_public
                             $form_content[] = array("id" => $key, "type" => "text", "required" => true, "name" => $unserialized_value, "value" => "");
                         }
                     }
-                    $form_content[] = array("form_status" => "pending");
-                    $content = array($taxonomy_slug => $form_content);
+                    // $form_content[] = array("form_status" => "not_submitted");
+                    $single_form = array("fields" => $form_content, "status" => "not_submitted");
+                    $content = array($taxonomy_slug => $single_form);//$form_content);
                 } else {
                     $content = "Error on question. Content the developers.";
                 }
