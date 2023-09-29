@@ -211,14 +211,15 @@ class DS_content_parser_public
                                 'terms'    => $taxonomy_slug
                             ),
                         ),
-                        'posts_per_page' => 1                           // Get all posts that match the criteria
+                        'posts_per_page' => 1,                          // Get all posts that match the criteria
+                        'post_status' => array('draft', 'pending', 'publish'),
                     );
 
                     $post = get_posts($args);
-                    if ($post) $post = $post[0];
 
-                    // print_r($post);
-                    // exit();
+                    if ($post) {
+                        $user_previous_response = json_decode($post[0]->post_content, true);
+                    }
 
                     $term_metas = get_term_meta($term->term_id);
 
@@ -235,11 +236,21 @@ class DS_content_parser_public
                                 // Now you can work with $innerValue
                                 if (is_array($innerValue)) {
                                     foreach ($innerValue as $fieldKey => $fieldValue) {
-                                        // Do something with $fieldKey and $fieldValue
+
+                                        $value = "";
+                                        if (isset($user_previous_response)) {
+
+                                            foreach ($user_previous_response as $item) {
+                                                if (isset($item[$fieldKey])) {
+                                                    $value = $item[$fieldKey];
+                                                    break;  // exit the loop once you've found and printed the ds_title
+                                                }
+                                            }
+                                        }
 
                                         $field = array(
                                             "id" => $fieldKey, "type" => "text", "required" => true,
-                                            "name" => $fieldValue, "value" => ""
+                                            "name" => $fieldValue, "value" => $value
                                         );
                                         $values_array[] = $field;
                                     }
@@ -247,12 +258,33 @@ class DS_content_parser_public
                                 $form_content[] = array($key => $values_array);
                             }
                         } else {
-                            $form_content[] = array("id" => $key, "type" => "text", "required" => true, "name" => $unserialized_value, "value" => "");
+                            $value = "";
+                            if (isset($user_previous_response)) {
+
+                                foreach ($user_previous_response as $item) {
+                                    if (isset($item[$key])) {
+                                        $value = $item[$key];
+                                        break;  // exit the loop once you've found and printed the ds_title
+                                    }
+                                }
+                            }
+                            $form_content[] = array("id" => $key, "type" => "text", "required" => true, "name" => $unserialized_value, "value" => $value);
                         }
                     }
-                    // $form_content[] = array("form_status" => "not_submitted");
-                    $single_form = array("fields" => $form_content, "status" => "not_submitted");
-                    $content = array($taxonomy_slug => $single_form);//$form_content);
+                    $form_status = "not_submitted";
+                    if ($post) {
+                        if ($post[0]->post_status == 'publish')
+                            $form_status = 'approved';
+                        else if ($post[0]->post_status == 'draft')
+                            $form_status = 'not_approved';
+                        else
+                            $form_status = $post[0]->post_status;
+                    }
+                    $single_form = array(
+                        "fields" => $form_content,
+                        "status" => $form_status
+                    );
+                    $content = array($taxonomy_slug => $single_form); //$form_content);
                 } else {
                     $content = "Error on question. Content the developers.";
                 }
